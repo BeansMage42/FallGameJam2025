@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+[RequireComponent(typeof(Rigidbody))]
 public class CollideAndSlideController : MonoBehaviour
 {
     
@@ -60,6 +60,7 @@ public class CollideAndSlideController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         rb.isKinematic = true;
+        
     }
     
     void Update()
