@@ -11,6 +11,8 @@ public class CustomerBehaviour : AIBehaviour
     private Interaction interactor;
     private bool isInLine = true;
     Transform seat;
+
+    [SerializeField] private AudioClip[] deathScreams;
     public override void Awake()
     {
         base.Awake();
@@ -70,4 +72,8 @@ public class CustomerBehaviour : AIBehaviour
         }
     }
 
-}
+    public AudioClip GetDeathScream()
+    {
+        return deathScreams[Random.Range(0, deathScreams.Length)];
+    }
+ }
