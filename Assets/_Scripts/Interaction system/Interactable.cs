@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Interactable : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class Interactable : MonoBehaviour
     public Action IsFocused;
     public Action IsUnfocused;
 
+    [SerializeField] AudioClip [] interactSound;
     
-
+    public AudioClip GetInteractSound()
+    {
+        if (interactSound.Length <= 0) return null;
+        return interactSound[Random.Range(0, interactSound.Length - 1)];
+    }
 }
 

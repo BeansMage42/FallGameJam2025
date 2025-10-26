@@ -26,11 +26,14 @@ public class Interaction : MonoBehaviour
     private IngredientType _currentOrderProgress = new IngredientType();
     private List<GameObject> _stomach = new List<GameObject>();
     public  Action completedOrder;
+    
+    AudioSource interactionSource;
 
     private void Start()
     {
 
         UIManager.Instance.ClearOrder();
+        interactionSource = GetComponent<AudioSource>();
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -40,7 +43,7 @@ public class Interaction : MonoBehaviour
             if (_foundInteractable.TryGetComponent(out ingredients ingredient) && _currentOrder == null && ingredient.isActiveAndEnabled) return;
             _foundInteractable.InteractedWith?.Invoke(this);
             
-            
+            interactionSource.PlayOneShot(_foundInteractable.GetInteractSound());
         }
     }
     public void SetOrder(OrderSO newOrder)
