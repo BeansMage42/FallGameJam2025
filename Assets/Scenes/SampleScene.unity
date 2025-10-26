@@ -1008,6 +1008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33931fc9b3fd8414c86c6ba93494a8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactSound:
+  - {fileID: 8300000, guid: 42b8711d8ce14bc48948788c04acfde8, type: 3}
 --- !u!114 &972939973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,6 +1878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33931fc9b3fd8414c86c6ba93494a8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactSound:
+  - {fileID: 8300000, guid: 42b8711d8ce14bc48948788c04acfde8, type: 3}
 --- !u!114 &1831542581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,6 +2026,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 852739820393757945, guid: 009403bd6b2d89d4581a95cd1602bd28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4543681142707089784}
+    - targetCorrespondingSourceObject: {fileID: 852739820393757945, guid: 009403bd6b2d89d4581a95cd1602bd28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4543681142707089788}
   m_SourcePrefab: {fileID: 100100000, guid: 009403bd6b2d89d4581a95cd1602bd28, type: 3}
 --- !u!1 &4543681142707089783 stripped
 GameObject:
@@ -2073,6 +2080,103 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!82 &4543681142707089788
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4543681142707089783}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &6987202511393759614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2137,6 +2241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7060216843227186720, guid: d890f33deb3d50f4bb8482f600cb4cd6, type: 3}
+      propertyPath: interactSound.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060216843227186720, guid: d890f33deb3d50f4bb8482f600cb4cd6, type: 3}
+      propertyPath: 'interactSound.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 42b8711d8ce14bc48948788c04acfde8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

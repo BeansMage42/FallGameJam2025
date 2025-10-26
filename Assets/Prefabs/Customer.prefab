@@ -164,6 +164,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerBehaviour
   counter: {fileID: 0}
   customerOrder: {fileID: 0}
+  deathScreams:
+  - {fileID: 8300000, guid: 42b8711d8ce14bc48948788c04acfde8, type: 3}
+  - {fileID: 8300000, guid: a0071463a39c449418ca2eaf64489c09, type: 3}
+  - {fileID: 8300000, guid: c851b2d4a34dafd4e8900fba9348a55f, type: 3}
+  - {fileID: 8300000, guid: e39d8e8b4282cb743a7c26f3a6777987, type: 3}
+  - {fileID: 8300000, guid: 9d3307ede650632448c16e03f6863b35, type: 3}
+  - {fileID: 8300000, guid: 99edbed11f9d49e4bbe3e0a20d622bf1, type: 3}
 --- !u!114 &7060216843227186720
 MonoBehaviour:
   m_ObjectHideFlags: 0
