@@ -6,6 +6,7 @@ public class ingredients : MonoBehaviour
 {
     [SerializeField] private IngredientType _ingredient = new IngredientType();
     Interactable _interactable;
+    public Action Eat;
 
     private void Awake()
     {
@@ -15,6 +16,10 @@ public class ingredients : MonoBehaviour
     private void OnEnable()
     {
         _interactable.InteractedWith += OnInteract;
+    }
+    private void OnDisable()
+    {
+        _interactable.InteractedWith -= OnInteract;
     }
 
     void Start()
@@ -29,6 +34,8 @@ public class ingredients : MonoBehaviour
     private void OnInteract(Interaction playerInteraction)
     {
         Debug.Log("player interacted");
+        Eat?.Invoke();
+        playerInteraction.AteSomething(this);
         gameObject.SetActive(false);
     }
     

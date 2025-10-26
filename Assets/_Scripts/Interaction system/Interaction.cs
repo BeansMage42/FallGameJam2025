@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,22 +14,52 @@ public class Interaction : MonoBehaviour
     [SerializeField] private float _reach;
     [SerializeField] private float _radius;
     [SerializeField] private Image _image;
-    [SerializeField] private OrderSO _currentOrder;
+    [SerializeField] private float _maxTime;
+    [SerializeField] private float _vomitTime;
+    private bool _isBeingWatched;
+    private bool _isVomiting;
+    private float _currentTimer;
+    private bool _hasEaten;
+    public OrderSO _currentOrder;
     private IngredientType _currentOrderProgress = new IngredientType();
     private List<GameObject> _stomach = new List<GameObject>();
+    public  Action completedOrder;
+
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.started && _foundInteractable != null)
         {
-            _stomach.Add(_foundInteractable.gameObject);
-            CompareIngredients(_foundInteractable.GetComponent<ingredients>().GetIngriedients());
+            Debug.Log("interact");
+            if (_foundInteractable.TryGetComponent(out ingredients ingredient) && _currentOrder == null && ingredient.isActiveAndEnabled) return;
             _foundInteractable.InteractedWith?.Invoke(this);
             
         }
     }
     
+    public void AteSomething(ingredients ingredients)
+    { 
+        if (_stomach.Count == 0)
+        {
+            _currentTimer = _maxTime;
+        }
+        _stomach.Add(ingredients.gameObject);
+        CompareIngredients(ingredients.GetIngriedients());
+    }
+    
     private void Update()
     {
+        if(_stomach.Count > 0)
+        {
+            if(_currentTimer > 0)
+            {
+                _currentTimer-=Time.deltaTime;
+            }
+            else
+            {
+                Vomit();
+            }
+        }
+
         if (Physics.SphereCast(transform.position, _radius, transform.forward, out RaycastHit hit,_reach ))
         {
                 if (hit.collider.TryGetComponent(out Interactable interactable)) 
@@ -51,36 +82,52 @@ public class Interaction : MonoBehaviour
             _image.color = Color.red;
            // Debug.Log("no");
         }
+        if(_isBeingWatched && _isVomiting)
+        {
+            Debug.Log("seen");
+        }
         
     }
 
+    private void Vomit()
+    {
+        _stomach.Clear();
+        print(_currentOrderProgress);
+        if ((_currentOrderProgress & _currentOrder.GetOrderIngredients()) == _currentOrder.GetOrderIngredients())
+        {
+            completedOrder?.Invoke();
+            _currentOrder = null;
+            print("orderCompleted");
+        }
+
+        _currentOrderProgress = new IngredientType();
+        StartCoroutine(VomitTime());
+    }
+    public void WatchStateChange(bool state)
+    {
+        _isBeingWatched = state;
+    }
+    private IEnumerator VomitTime()
+    {
+        _isVomiting = true;
+        yield return new WaitForSeconds(_vomitTime);
+        _isVomiting = false;
+    }
+    public bool GetIsVomiting()
+    {
+        return _isVomiting;
+    }
     public void CompareIngredients(IngredientType other)
     {
-        /*if(currentOrder.GetOrderIngredients() == other)
-        {
-            Debug.Log("same");
-        }*/
-
         IngredientType[] test = InteractionHelpers.GetFlags(other);
         for (int i = 0; i < test.Length; i++) 
         {
-            
                 if ((_currentOrderProgress & test[i]) == 0)
                 {
                     _currentOrderProgress |= test[i];
                     break;
                 }
-                else
-                {
-                    print("not already added");
-                }
-            
-           
         }
-        print(_currentOrderProgress);
-        if((_currentOrderProgress & _currentOrder.GetOrderIngredients())== _currentOrder.GetOrderIngredients())
-        {
-            print("orderCompleted");
-        }
+        
     }
 }
