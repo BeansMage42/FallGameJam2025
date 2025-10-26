@@ -29,7 +29,7 @@ public class Counter : MonoBehaviour
         _theLine.Remove(newAI);
         for(int i = aiIndex; i < _theLine.Count; i++)
         {
-            _theLine[i].TargetLocation(transform.position + (-Vector3.forward * _lineSpacing * (i+1)));
+            _theLine[i].TargetLocation(transform.position + (Vector3.right * _lineSpacing * (i+1)));
             _theLine[i].MoveUpInLine();
         }
 
@@ -43,7 +43,7 @@ public class Counter : MonoBehaviour
 
     public Vector3 LineEndPos()
     {
-        return transform.position + (-Vector3.forward * _lineSpacing)*_theLine.Count;
+        return transform.position + (Vector3.right * _lineSpacing)*_theLine.Count;
     }
 
     public Transform GetEmptySeat()

@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
         {
             if ((currentOrder & i) != 0)
             {
-                _orderUI.text += $"\n- <s>{i.ToString()}</s>";
+                _orderUI.text += $"\n -<s>{i.ToString()}</s>";
                 continue;
             }
             _orderUI.text += "\n -" + i.ToString();
