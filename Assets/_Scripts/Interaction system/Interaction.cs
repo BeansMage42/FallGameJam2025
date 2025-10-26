@@ -14,6 +14,8 @@ public class Interaction : MonoBehaviour
     [SerializeField] private float _reach;
     [SerializeField] private float _radius;
     [SerializeField] private Image _image;
+    [SerializeField] private Sprite _mouth;
+    [SerializeField] private Sprite _dot;
     [SerializeField] private float _maxTime;
     [SerializeField] private float _vomitTime;
     private bool _isBeingWatched;
@@ -64,14 +66,14 @@ public class Interaction : MonoBehaviour
         {
                 if (hit.collider.TryGetComponent(out Interactable interactable)) 
                 {
-                _image.color = Color.green;
+                _image.sprite = _mouth;
                     _foundInteractable = interactable;
                    // Debug.Log(hit.collider.name);
                 }
             else
             {
                 _foundInteractable = null;
-                _image.color = Color.red;
+                _image.sprite = _dot;
 
                // Debug.Log("hit something but its not what you want");
             }
@@ -79,8 +81,9 @@ public class Interaction : MonoBehaviour
         else
         {
             _foundInteractable = null;
-            _image.color = Color.red;
-           // Debug.Log("no");
+
+            _image.sprite = _dot;
+            // Debug.Log("no");
         }
         if(_isBeingWatched && _isVomiting)
         {
