@@ -33,7 +33,7 @@ public class Chef : MonoBehaviour
         }
     }
 
-    void EjectFluid()
+    public void EjectFluid()
     {
         barfSource.clip = barfSounds[Random.Range(0, 3)];
         barfSource.Play();

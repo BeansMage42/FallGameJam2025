@@ -28,22 +28,23 @@ public class Interaction : MonoBehaviour
     public  Action completedOrder;
     
     AudioSource interactionSource;
+    private Chef vomitScript;
 
     private void Start()
     {
 
         UIManager.Instance.ClearOrder();
         interactionSource = GetComponent<AudioSource>();
+        vomitScript.GetComponent<Chef>();
     }
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.started && _foundInteractable != null)
         {
+            interactionSource.PlayOneShot(_foundInteractable.GetInteractSound());
             Debug.Log("interact");
             if (_foundInteractable.TryGetComponent(out ingredients ingredient) && _currentOrder == null && ingredient.isActiveAndEnabled) return;
             _foundInteractable.InteractedWith?.Invoke(this);
-            
-            interactionSource.PlayOneShot(_foundInteractable.GetInteractSound());
         }
     }
     public void SetOrder(OrderSO newOrder)
@@ -109,6 +110,7 @@ public class Interaction : MonoBehaviour
 
     private void Vomit()
     {
+        vomitScript.EjectFluid();
         _stomach.Clear();
         print(_currentOrderProgress);
         UIManager.Instance.ClearOrder();

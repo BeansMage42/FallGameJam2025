@@ -3416,9 +3416,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2709624369977000133, guid: 1ace61254d165ba41931c4dcc7e85d21, type: 3}
+      propertyPath: m_ResetSeedOnPlay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3697888623087373366, guid: 1ace61254d165ba41931c4dcc7e85d21, type: 3}
       propertyPath: m_Name
       value: Blood Spit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444423267338167031, guid: 1ace61254d165ba41931c4dcc7e85d21, type: 3}
+      propertyPath: m_ResetSeedOnPlay
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10380,7 +10388,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.667
+      value: 0.88
       inSlope: 0
       outSlope: 0
       tangentMode: 0
