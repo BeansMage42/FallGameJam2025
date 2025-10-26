@@ -34,7 +34,7 @@ public class CustomerBehaviour : AIBehaviour
         print("customer Interacted with");
         interactor = interaction;
         interaction.completedOrder += OrderCompleted;
-        interaction._currentOrder = customerOrder;
+        interaction.SetOrder( customerOrder);
     }
     public void OrderCompleted()
     {
