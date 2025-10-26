@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -8,10 +9,15 @@ public class Chef : MonoBehaviour
     
     [SerializeField] private VisualEffect chunk;
     [SerializeField] private VisualEffect fluid;
+    
+    [SerializeField] private AudioSource barfSource;
+    [SerializeField] private AudioClip [] barfSounds;
+
+    private WaitForSeconds barfDelay;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        barfDelay = new WaitForSeconds(0.35f);
     }
 
     // Update is called once per frame
@@ -29,6 +35,16 @@ public class Chef : MonoBehaviour
 
     void EjectFluid()
     {
+        barfSource.clip = barfSounds[Random.Range(0, 3)];
+        barfSource.Play();
+        
+        StartCoroutine(BarfDelay());
+    }
+
+    IEnumerator BarfDelay()
+    {
+        yield return barfDelay;
+   
         fluid.SetVector3("SpitDirection", transform.forward + new Vector3(0, 0.3f, 0));
         fluid.SetVector3("Position", transform.position);
         fluid.Play();
