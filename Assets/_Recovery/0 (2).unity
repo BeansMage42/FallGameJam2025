@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 1245d7109b2ec9f479b2c6ff205bfa14, type: 2}
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -459,10 +459,7 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array:
-      - m_Value: 0.1
-        m_Name: SplitSpeed
-        m_Overridden: 1
+      m_Array: []
     m_Vector2f:
       m_Array:
       - m_Value: {x: 8, y: 10}
@@ -473,7 +470,7 @@ VisualEffect:
       - m_Value: {x: 0, y: 0.4, z: 1}
         m_Name: SpitDirection
         m_Overridden: 0
-      - m_Value: {x: 0, y: 90, z: 0}
+      - m_Value: {x: 0, y: 0, z: 0}
         m_Name: PlayerRotation
         m_Overridden: 1
     m_Vector4f:
@@ -517,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 1050949260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
