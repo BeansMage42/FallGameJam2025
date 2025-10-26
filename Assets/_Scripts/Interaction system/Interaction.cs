@@ -27,6 +27,11 @@ public class Interaction : MonoBehaviour
     private List<GameObject> _stomach = new List<GameObject>();
     public  Action completedOrder;
 
+    private void Start()
+    {
+
+        UIManager.Instance.ClearOrder();
+    }
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.started && _foundInteractable != null)
@@ -35,7 +40,13 @@ public class Interaction : MonoBehaviour
             if (_foundInteractable.TryGetComponent(out ingredients ingredient) && _currentOrder == null && ingredient.isActiveAndEnabled) return;
             _foundInteractable.InteractedWith?.Invoke(this);
             
+            
         }
+    }
+    public void SetOrder(OrderSO newOrder)
+    {
+        _currentOrder = newOrder;
+        UIManager.Instance.UpdateOrderGUI(newOrder, _currentOrderProgress);
     }
     
     public void AteSomething(ingredients ingredients)
@@ -46,6 +57,7 @@ public class Interaction : MonoBehaviour
         }
         _stomach.Add(ingredients.gameObject);
         CompareIngredients(ingredients.GetIngriedients());
+        UIManager.Instance.UpdateOrderGUI(_currentOrder, _currentOrderProgress);
     }
     
     private void Update()
@@ -96,6 +108,7 @@ public class Interaction : MonoBehaviour
     {
         _stomach.Clear();
         print(_currentOrderProgress);
+        UIManager.Instance.ClearOrder();
         if ((_currentOrderProgress & _currentOrder.GetOrderIngredients()) == _currentOrder.GetOrderIngredients())
         {
             completedOrder?.Invoke();
