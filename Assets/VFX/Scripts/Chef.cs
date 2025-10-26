@@ -5,7 +5,8 @@ public class Chef : MonoBehaviour
 {
     [SerializeField] private bool triggerVomit;
     [SerializeField] private GameObject vomitObject;
-
+    
+    [SerializeField] private VisualEffect chunk;
     [SerializeField] private VisualEffect fluid;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,5 +32,9 @@ public class Chef : MonoBehaviour
         fluid.SetVector3("SpitDirection", transform.forward + new Vector3(0, 0.3f, 0));
         fluid.SetVector3("Position", transform.position);
         fluid.Play();
+        
+        chunk.SetVector3("SpitDirection", transform.forward + new Vector3(0, 0.3f, 0));
+        chunk.SetVector3("Position", transform.position);
+        chunk.Play();
     }
 }
