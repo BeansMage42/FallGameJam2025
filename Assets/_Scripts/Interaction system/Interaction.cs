@@ -35,7 +35,7 @@ public class Interaction : MonoBehaviour
 
         UIManager.Instance.ClearOrder();
         interactionSource = GetComponent<AudioSource>();
-        vomitScript.GetComponent<Chef>();
+        vomitScript = GetComponent<Chef>();
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -71,6 +71,7 @@ public class Interaction : MonoBehaviour
             if(_currentTimer > 0)
             {
                 _currentTimer-=Time.deltaTime;
+                UIManager.Instance.UpdateBarfMeter(_currentTimer / _maxTime);
             }
             else
             {
@@ -117,16 +118,18 @@ public class Interaction : MonoBehaviour
         if ((_currentOrderProgress & _currentOrder.GetOrderIngredients()) == _currentOrder.GetOrderIngredients())
         {
             completedOrder?.Invoke();
+            Instantiate(_currentOrder.vomitObject,transform.position + transform.forward*1.3f,Quaternion.identity);
             _currentOrder = null;
             print("orderCompleted");
+        }
+        else
+        {
+
+            UIManager.Instance.UpdateOrderGUI(_currentOrder, _currentOrderProgress);
         }
 
         _currentOrderProgress = new IngredientType();
         StartCoroutine(VomitTime());
-    }
-    public void WatchStateChange(bool state)
-    {
-        _isBeingWatched = state;
     }
     private IEnumerator VomitTime()
     {

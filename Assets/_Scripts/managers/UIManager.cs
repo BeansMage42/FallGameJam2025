@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,7 +8,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     [SerializeField] TextMeshProUGUI _orderUI;
-
+    [SerializeField] Image _barfMeter;
+    [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] GameObject _menuObject;
+    [SerializeField] TextMeshProUGUI _finalScoreText;
+    
     //Singleton (carried between scenes)
     private void Awake() //Acts before Start()
     {
@@ -23,6 +28,7 @@ public class UIManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        _menuObject.SetActive(false);
     }
 
     private void Timer()
@@ -34,12 +40,23 @@ public class UIManager : MonoBehaviour
         else if (remainingTime < 0)
         {
             remainingTime = 0;
+            GameOverMenu();
+            GameManager.Instance.GameEnd();
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+      
     }
 
+    public void UpdateBarfMeter(float amount)
+    {
+        _barfMeter.fillAmount = amount;
+    }
+    public void UpdateScore(float amount)
+    {
+        _scoreText.text = $"Store rating: {amount} % ";
+    }
     public void UpdateOrderGUI(OrderSO order, IngredientType currentOrder)
     {
         IngredientType[] ingredientsInOrder = InteractionHelpers.GetFlags(order.GetOrderIngredients());
@@ -60,13 +77,14 @@ public class UIManager : MonoBehaviour
         _orderUI.text = "Press 'E' Talk to customer to get next order";
     }
 
-    void Start() //Acts before Update()
+    public void GameOverMenu()
     {
-        
+        _menuObject.SetActive(true);
+        _finalScoreText.text = $"Final Score: {GameManager.Instance.GetScore()}";
     }
 
     void Update()
     {
-       // Timer();
+        Timer();
     }
 }

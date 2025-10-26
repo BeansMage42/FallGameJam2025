@@ -46,6 +46,7 @@ public class CustomerBehaviour : AIBehaviour
         TargetLocation(seat.position);
         counter.RemoveCustomerFromLine(this);
         ingredients.enabled = true;
+        GameManager.Instance.AddScore(5);
     }
 
     public override void MoveUpInLine()

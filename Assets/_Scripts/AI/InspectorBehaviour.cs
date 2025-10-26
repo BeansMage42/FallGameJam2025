@@ -41,19 +41,21 @@ public class InspectorBehaviour : AIBehaviour
 
             if (!Physics.Raycast(transform.position, toPlayer.normalized, Vector3.Distance(transform.position, player.transform.position), obstructMask))//checks for walls
             {
-                player.WatchStateChange(true);
+                if (player.GetIsVomiting())
+                {
+                    PlayerCaught();
+                }
                
-            }
-            else
-            {
-                player.WatchStateChange(false);
             }
 
         }
-        else
-        {
-            player.WatchStateChange(false);
-        }
+    }
+    private void PlayerCaught()
+    {
+        int randomSound =  Random.Range(0,voiceClip.Length-1);
+        audioSource.clip = voiceClip[randomSound];
+        audioSource.Play();
+        GameManager.Instance.AddScore(-10);
     }
 
     private IEnumerator PatrolMotion()
