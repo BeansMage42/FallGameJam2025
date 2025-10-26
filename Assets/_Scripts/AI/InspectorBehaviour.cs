@@ -16,11 +16,15 @@ public class InspectorBehaviour : AIBehaviour
     [SerializeField] private LayerMask targetMask; //player layer
     [SerializeField] private LayerMask obstructMask; // layers it cant hear/see through
     [SerializeField] Interaction player;
-
+    
+    AudioSource audioSource;
+    [SerializeField] private AudioClip [] voiceClip;
+ 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(PatrolMotion());
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
