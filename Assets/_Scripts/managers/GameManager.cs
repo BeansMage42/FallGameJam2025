@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public AudioSource sounding;
     private float storeRating = 50;
     private void Awake() //Acts before Start()
     {
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
+    }
+    public void PlaySound(AudioClip soundClip)
+    {
+        sounding.PlayOneShot(soundClip);
     }
     public void CloseGame()
     {

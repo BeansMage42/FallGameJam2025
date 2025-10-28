@@ -41,7 +41,6 @@ public class Interaction : MonoBehaviour
     {
         if (context.started && _foundInteractable != null)
         {
-            interactionSource.PlayOneShot(_foundInteractable.GetInteractSound());
             Debug.Log("interact");
             if (_foundInteractable.TryGetComponent(out ingredients ingredient) && _currentOrder == null && ingredient.isActiveAndEnabled) return;
             _foundInteractable.InteractedWith?.Invoke(this);
@@ -84,6 +83,7 @@ public class Interaction : MonoBehaviour
                 if (hit.collider.TryGetComponent(out Interactable interactable)) 
                 {
                 _image.sprite = _mouth;
+                _image.gameObject.transform.localScale = new Vector3(1, 1);
                     _foundInteractable = interactable;
                    // Debug.Log(hit.collider.name);
                 }
@@ -91,8 +91,9 @@ public class Interaction : MonoBehaviour
             {
                 _foundInteractable = null;
                 _image.sprite = _dot;
+                _image.gameObject.transform.localScale = new Vector3(0.5f, 0.5f);
 
-               // Debug.Log("hit something but its not what you want");
+                // Debug.Log("hit something but its not what you want");
             }
         }
         else
@@ -100,6 +101,7 @@ public class Interaction : MonoBehaviour
             _foundInteractable = null;
 
             _image.sprite = _dot;
+            _image.gameObject.transform.localScale = new Vector3(0.5f, 0.5f);
             // Debug.Log("no");
         }
         if(_isBeingWatched && _isVomiting)

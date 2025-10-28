@@ -37,6 +37,7 @@ public class ingredients : MonoBehaviour
         Eat?.Invoke();
         playerInteraction.AteSomething(this);
         gameObject.SetActive(false);
+        _interactable.PlayInteractSound();
     }
     
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7fbf353f0399446947f94dcebf14d6, type: 3}
+  m_Name: Cookie
+  m_EditorClassIdentifier: Assembly-CSharp::OrderSO
+  orderName: Cookie
+  orderIngredients: 24
+  vomitObject: {fileID: 3279332949800115757, guid: 1e602bc7ebb90d849a5bb5659be8c12b, type: 3}

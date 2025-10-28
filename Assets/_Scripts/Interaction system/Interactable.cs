@@ -13,10 +13,10 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] AudioClip [] interactSound;
     
-    public AudioClip GetInteractSound()
+    public void PlayInteractSound()
     {
-        if (interactSound.Length <= 0) return null;
-        return interactSound[Random.Range(0, interactSound.Length - 1)];
+        if (interactSound.Length <= 0) return;
+        GameManager.Instance.PlaySound(interactSound[Random.Range(0, interactSound.Length - 1)]);
     }
 }
 

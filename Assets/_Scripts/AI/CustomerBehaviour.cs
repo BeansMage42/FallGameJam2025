@@ -62,6 +62,7 @@ public class CustomerBehaviour : AIBehaviour
     }
     public void Eat()
     {
+        interactable.PlayInteractSound();
         if (isInLine)
         {
             counter.RemoveCustomerFromLine(this);
